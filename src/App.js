@@ -7,7 +7,7 @@ function App() {
   const [arr, setArr] = useState({});
 
   const date = new Date()
-  date.setMonth(7)
+  date.setMonth(1)
 
   const matrix = [];
   const numRows = 51;
@@ -21,22 +21,22 @@ function App() {
   }
 
   useEffect(() => {
-    const today = new Date(); 
-    const numDays = 357; 
-  
+    const today = new Date();
+    const numDays = 357;
+
     const newDateTimeArray = {};
     for (let i = numDays; i >= 0; i--) {
       const currentDate = new Date(today.getTime() - i * 24 * 60 * 60 * 1000);
-  
+
       const year = currentDate.getFullYear();
       const month = String(currentDate.getMonth() + 1).padStart(2, '0');
       const day = String(currentDate.getDate()).padStart(2, '0');
-  
+
       const dateTimeString = `${year}-${month}-${day}: `;
       currentDate.setHours(0, 0, 0, 0);
       newDateTimeArray[dateTimeString] = currentDate;
     }
-  
+
     setDateTimeArray(newDateTimeArray);
     console.log(dateTimeArray);
   }, []);
