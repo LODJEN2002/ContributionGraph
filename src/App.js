@@ -7,7 +7,7 @@ function App() {
   const [arr, setArr] = useState({});
 
   const date = new Date()
-  date.setMonth(1)
+  date.setMonth(7)
 
   const matrix = [];
   const numRows = 51;
