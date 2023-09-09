@@ -1,3 +1,7 @@
+html{
+    background-color: #7C7C7C;
+}
+
 .App {
     margin-top: 115px;
 }
@@ -13,7 +17,7 @@
     width: 15px;
     height: 15px;
     background-color: #EDEDED;
-    margin: 0 .97px 2px 0;
+    margin: 0 1px 1px 0;
 }
 
 .App__cell_visible {

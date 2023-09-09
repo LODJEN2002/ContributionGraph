@@ -1,17 +1,14 @@
 import { useEffect, useState } from 'react';
+import nowDate from './components/Date';
 import './App.css';
 import Cell from './components/Cell';
 
 function App() {
-  const [dateTimeArray, setDateTimeArray] = useState({});
-  const [arr, setArr] = useState({});
-
-  const date = new Date()
-  date.setMonth(7)
-
   const matrix = [];
   const numRows = 51;
   const numColumns = 7;
+  const [timeObj, setTimeObj] = useState({})
+
   for (let i = 0; i < numColumns; i++) {
     matrix[i] = [];
 
@@ -20,26 +17,23 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    const today = new Date();
-    const numDays = 357;
+  // console.log(nowDate)
 
-    const newDateTimeArray = {};
-    for (let i = numDays; i >= 0; i--) {
-      const currentDate = new Date(today.getTime() - i * 24 * 60 * 60 * 1000);
+  // console.log(new Date())
 
-      const year = currentDate.getFullYear();
-      const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-      const day = String(currentDate.getDate()).padStart(2, '0');
+  // console.log(matrix)
 
-      const dateTimeString = `${year}-${month}-${day}: `;
-      currentDate.setHours(0, 0, 0, 0);
-      newDateTimeArray[dateTimeString] = currentDate;
-    }
+  let now = new Date()
 
-    setDateTimeArray(newDateTimeArray);
-    console.log(dateTimeArray);
-  }, []);
+  console.log(new Date(now.getTime() -1 * 24 * 60 * 60 * 1000))
+
+  let testObj2 = {
+    '2023-08-06': 229
+  }
+
+
+  // console.log(now.getFullYear() + '-' + now.getMonth() + '-' + now.getDay())
+  // console.log(now.getTime())
 
   useEffect(() => {
     fetch("https://dpg.gg/test/calendar.json", {
@@ -47,42 +41,35 @@ function App() {
       // headers: { 'Content-Type': 'application/json' },
     })
       .then(res => res.json())
-      .then(res => res)
-      .then(res => {
-        setArr({ ...dateTimeArray, ...res });
-      })
-      .then(console.log(arr))
+      .then(res => setTimeObj(res))
+    // .then(res => console.log(res))
   }, [])
 
 
-  function qwe() {
-    // console.log(dateTimeArray)
-    console.log(dateTimeArray)
-    console.log(arr)
-    // console.log(dateTimeArray)
+  // console.log(testObj)
+
+
+  function buttonClick() {
+    console.log({ ...timeObj, ...testObj2 })
+    // console.log(testObj2)
 
   }
-
-  // useEffect(() => {
-  // },[])
 
   return (
     <div className="App">
       {matrix.map((row, rowIndex) => (
         <div
           className='App__row' key={rowIndex}>
-          {row.map((cell, cellIndex) => (
+          {row.map((cell, columnIndex) => (
             <Cell
-              dateTimeArray={dateTimeArray[cell]}
-              key={cellIndex}
-              cell={cell}
-              cellIndex={cellIndex}
-              date={date}
+              key={columnIndex}
+              cellIndex={cell}
+              columnIndex={columnIndex}
             />
           ))}
         </div>
       ))}
-      <button onClick={qwe}>asd</button>
+      <button onClick={buttonClick}>Click</button>
     </div>
   );
 }
