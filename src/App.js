@@ -7,6 +7,7 @@ function App() {
   const matrix = [];
   const numRows = 51;
   const numColumns = 7;
+  const objectTime = {}
   const [timeObj, setTimeObj] = useState({})
 
   for (let i = 0; i < numColumns; i++) {
@@ -25,7 +26,35 @@ function App() {
 
   let now = new Date()
 
-  console.log(new Date(now.getTime() -1 * 24 * 60 * 60 * 1000))
+  // console.log(new Date(now.getTime() - 1 * 24 * 60 * 60 * 1000).getDate())
+
+  useEffect(() => {
+    // let objectTime = {}
+    let daysAYear = 3
+
+
+    for (let i = 0; i <= daysAYear; i++) {
+      let date = new Date(now.getTime() - i * 24 * 60 * 60 * 1000)
+
+      const year = date.getFullYear()
+      const month = String(date.getMonth()).padStart(2, '0')
+      // const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0')
+
+      let constructorDate = year + '-' + month + '-' + day
+      // console.log(constructorDate)
+      // console.log(i)   
+      // console.log(date.getDate())
+      // objectTime.push(date)
+      // console.log(objectTime)
+      objectTime[constructorDate] =''  
+      console.log(objectTime)
+
+    }
+  }, [])
+
+
+
 
   let testObj2 = {
     '2023-08-06': 229
