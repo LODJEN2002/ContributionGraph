@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import corner from '../corner.svg'
 
 const Cell = (props) => {
-    const { cellIndex, columnIndex } = props
+    const { cellIndex, columnIndex,date } = props
     const [showTooltip, setShowToolpit] = useState(false)
 
     function clickCell() {
         console.log(columnIndex)
         console.log(cellIndex)
     }
-
 
     return (
         <span
@@ -23,7 +22,7 @@ const Cell = (props) => {
             ></span>
             {showTooltip ?
                 <span className='App__cell_visible'>
-                    25 contributions
+                    {cellIndex} contributions {date}
                     <div className='App__cell_br'>{ }
                         <img className='qwe' src={corner} alt="corner" />
                     </div>

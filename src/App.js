@@ -9,6 +9,8 @@ function App() {
   const numColumns = 7;
   const objectTime = {}
   const [timeObj, setTimeObj] = useState({})
+  const [allObj, setAllObj] = useState({})
+  const [dateArr, setDateArr ] = useState([])
 
   for (let i = 0; i < numColumns; i++) {
     matrix[i] = [];
@@ -18,51 +20,22 @@ function App() {
     }
   }
 
-  // console.log(nowDate)
-
-  // console.log(new Date())
-
-  // console.log(matrix)
-
   let now = new Date()
+  let daysAYear = 450
 
-  // console.log(new Date(now.getTime() - 1 * 24 * 60 * 60 * 1000).getDate())
+  for (let i = 0; i <= daysAYear; i++) {
+    let date = new Date(now.getTime() - i * 24 * 60 * 60 * 1000)
 
-  useEffect(() => {
-    // let objectTime = {}
-    let daysAYear = 3
+    const year = date.getFullYear()
+    const month = String(date.getMonth()).padStart(2, '0')
+    // const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0')
 
-
-    for (let i = 0; i <= daysAYear; i++) {
-      let date = new Date(now.getTime() - i * 24 * 60 * 60 * 1000)
-
-      const year = date.getFullYear()
-      const month = String(date.getMonth()).padStart(2, '0')
-      // const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-      const day = String(date.getDate()).padStart(2, '0')
-
-      let constructorDate = year + '-' + month + '-' + day
-      // console.log(constructorDate)
-      // console.log(i)   
-      // console.log(date.getDate())
-      // objectTime.push(date)
-      // console.log(objectTime)
-      objectTime[constructorDate] =''  
-      console.log(objectTime)
-
-    }
-  }, [])
-
-
-
-
-  let testObj2 = {
-    '2023-08-06': 229
+    let constructorDate = year + '-' + month + '-' + day
+    objectTime[constructorDate] = 0
   }
 
-
-  // console.log(now.getFullYear() + '-' + now.getMonth() + '-' + now.getDay())
-  // console.log(now.getTime())
+  // console.log(objectTime) // 2022-08-15 first date
 
   useEffect(() => {
     fetch("https://dpg.gg/test/calendar.json", {
@@ -71,17 +44,21 @@ function App() {
     })
       .then(res => res.json())
       .then(res => setTimeObj(res))
+      .then(setAllObj({ ...objectTime, ...timeObj }))
+      .then(console.log(allObj))
+      .then(setDateArr(Object.keys(allObj)))
     // .then(res => console.log(res))
   }, [])
 
-
-  // console.log(testObj)
-
+  console.log(allObj)
 
   function buttonClick() {
-    console.log({ ...timeObj, ...testObj2 })
+    const unitedObject = { ...objectTime, ...timeObj }
+    // console.log(unitedObject)
+    console.log(allObj)
+    // console.log(Object.keys(unitedObject))
+    // console.log(Object.keys(timeObj))
     // console.log(testObj2)
-
   }
 
   return (
@@ -94,6 +71,7 @@ function App() {
               key={columnIndex}
               cellIndex={cell}
               columnIndex={columnIndex}
+              date={dateArr[cell]}
             />
           ))}
         </div>
