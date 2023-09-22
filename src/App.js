@@ -9,6 +9,7 @@ function App() {
   const numColumns = 7;
   const [timeObj, setTimeObj] = useState({})
   const [allObj, setAllObj] = useState({})
+  const [colorArr, setColorArr] = useState([])
   const [dateArr, setDateArr] = useState([])
 
   for (let i = 0; i < numColumns; i++) {
@@ -21,13 +22,13 @@ function App() {
 
   function createObjectTime() {
     const now = new Date()
-    const daysAYear = 355
+    const daysAYear = 365
     const objectTime = {}
 
     for (let i = 0; i <= daysAYear; i++) {
       const date = new Date(now.getTime() - i * 24 * 60 * 60 * 1000)
       const year = date.getFullYear()
-      const month = String(date.getMonth()).padStart(2, '0')
+      const month = String(date.getMonth() + 1).padStart(2, '0')
       const day = String(date.getDate()).padStart(2, '0')
       const constructorDate = year + '-' + month + '-' + day
       objectTime[constructorDate] = 0
@@ -48,18 +49,35 @@ function App() {
       .then(res => res.json())
       .then(res => {
         setTimeObj(res)
-        const updateAllObj = {...objectTime, ...res}
+        const updateAllObj = { ...objectTime, ...res }
         setAllObj(updateAllObj)
-        setDateArr(Object.keys(allObj))
+        setDateArr(Object.keys(updateAllObj).slice(0, 358).reverse())
+        setColorArr(Object.values(updateAllObj).slice(0,358).reverse())
+        // setDateArr(Object.keys(updateAllObj).reverse())
+        // console.log(updateAllObj)
       })
       .catch(err => console.log(err))
   }, [])
 
-  function buttonClick() {
-    // const unitedObject = { ...objectTime, ...timeObj }
-    console.log(allObj)
-    console.log(dateArr)
+  // function qwe() {
+  //   // const sum = Object.keys(allObj).length - dateArr.length
+  //   const qwe = Object.entries(allObj)
+  //   const asd = Object.fromEntries(qwe.slice(0, -44))
+  //   // return Object.keys(allObj).length
+  //   return asd
+  // }
 
+  // const qweasd = Object.entries(allObj)
+  //   const asd = Object.fromEntries(qweasd.slice(0, -44))
+
+  //   console.log(asd)
+  // // console.log(qwe())
+  // console.log(Object.entries(allObj).slice(0, -2))
+
+  function buttonClick() {
+    console.log(allObj)
+    // console.log(dateArr)
+    // console.log(dateArr.reverse().slice(0, 350))
   }
 
   return (
@@ -73,6 +91,7 @@ function App() {
               cellIndex={cell}
               columnIndex={columnIndex}
               date={dateArr[cell]}
+              colorCell={colorArr[cell]}
             />
           ))}
         </div>
