@@ -7,11 +7,17 @@ const Cell = (props) => {
     const [showTooltip, setShowToolpit] = useState(false)
 let teg = 'App__cell'
 
-    if(colorCell > 3) {
+    if(colorCell > 0) {
         teg = 'App__cell-3'   
     }
-    if(colorCell > 6) {
+    if(colorCell > 10) {
         teg = 'App__cell-6'   
+    }
+    if(colorCell > 19) {
+        teg = 'App__cell-9'   
+    }
+    if(colorCell > 29 ) {
+        teg = 'App__cell-12'   
     }
     // if(colorCell >= 3){
 	// const teg = 'App__cell-3'

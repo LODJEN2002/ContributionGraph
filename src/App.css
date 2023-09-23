@@ -23,14 +23,27 @@ html{
 .App__cell-3 {
     width: 15px;
     height: 15px;
-    background-color: green;
+    background-color: #ACD5F2;
     margin: 0 1px 1px 0;
 }
 
 .App__cell-6 {
     width: 15px;
     height: 15px;
-    background-color: greenyellow;
+    background-color: #7FA8C9;
+    margin: 0 1px 1px 0;
+}
+
+.App__cell-9 {
+    width: 15px;
+    height: 15px;
+    background-color: #527BA0;
+    margin: 0 1px 1px 0;
+}
+.App__cell-12 {
+    width: 15px;
+    height: 15px;
+    background-color: #254E77;
     margin: 0 1px 1px 0;
 }
 
