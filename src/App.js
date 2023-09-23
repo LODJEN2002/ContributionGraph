@@ -4,8 +4,7 @@ import './App.css';
 import Cell from './components/Cell';
 
 function App() {
-  console.log('asdasd')
-	const matrix = [];
+  const matrix = [];
   const numRows = 51;
   const numColumns = 7;
   const [timeObj, setTimeObj] = useState({})

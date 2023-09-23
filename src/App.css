@@ -27,6 +27,13 @@ html{
     margin: 0 1px 1px 0;
 }
 
+.App__cell-6 {
+    width: 15px;
+    height: 15px;
+    background-color: greenyellow;
+    margin: 0 1px 1px 0;
+}
+
 .App__cell_visible {
     display: block;
     position: absolute;

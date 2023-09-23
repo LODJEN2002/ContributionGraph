@@ -2,9 +2,27 @@ import React, { useState } from 'react';
 import corner from '../corner.svg'
 
 const Cell = (props) => {
+    
     const { cellIndex, columnIndex, date, colorCell } = props
     const [showTooltip, setShowToolpit] = useState(false)
+let teg = 'App__cell'
 
+    if(colorCell > 3) {
+        teg = 'App__cell-3'   
+    }
+    if(colorCell > 6) {
+        teg = 'App__cell-6'   
+    }
+    // if(colorCell >= 3){
+	// const teg = 'App__cell-3'
+	//     return
+    // }if(colorCell >= 6){
+    // 	const teg = 'App__cell-6'
+	//     return
+    // }else{
+    // const teg = 'App__cell'
+    // }
+    	
     function clickCell() {
         console.log(columnIndex)
         console.log(cellIndex)
@@ -12,7 +30,7 @@ const Cell = (props) => {
 
     return (
         <span
-            className={colorCell >1 ? 'App__cell-3' : 'App__cell' }
+            className={teg}
             onMouseEnter={() => setShowToolpit(true)}
             onMouseLeave={() => setShowToolpit(false)}
             onClick={() => clickCell()}
