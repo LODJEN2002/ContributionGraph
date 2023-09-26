@@ -2,6 +2,15 @@ import { useEffect, useState } from 'react';
 import nowDate from './components/Date';
 import './App.css';
 import Cell from './components/Cell';
+import { scryRenderedDOMComponentsWithClass } from 'react-dom/test-utils';
+
+
+// У нас есть все числа(i), поэтому если вторник то минус 5,
+//  в нутри функциональный комп.
+// проверяешь если его i, то тогда баним его через  тернальные
+//  операторы ? true : false 
+
+
 
 function App() {
   const matrix = [];
@@ -11,7 +20,10 @@ function App() {
   const [allObj, setAllObj] = useState({})
   const [colorArr, setColorArr] = useState([])
   const [dateArr, setDateArr] = useState([])
+  const now = new Date()
+  const [dateOfTheWeek , setDateOfTheWeek] = useState(now.getDay())
 
+  
   for (let i = 0; i < numColumns; i++) {
     matrix[i] = [];
 
@@ -19,9 +31,22 @@ function App() {
       matrix[i][j] = j * numColumns + i + 1;
     }
   }
+  // console.log(now.getDay())
+  // setDateOfTheWeek()
+
+//   function func(num) {
+//     let matrix = []
+//     for(let i = 0; i < num; i++){
+//       matrix[num][num] = num*num  // ctr + backspace = delite word
+//     }
+
+//     return matrix
+//   }
+// console.log(func(7))
 
   function createObjectTime() {
     const now = new Date()
+
     const daysAYear = 365
     const objectTime = {}
 
@@ -92,6 +117,7 @@ function App() {
               columnIndex={columnIndex}
               date={dateArr[cell]}
               colorCell={colorArr[cell]}
+              dateOfTheWeek={dateOfTheWeek}
             />
           ))}
         </div>
