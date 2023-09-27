@@ -19,13 +19,6 @@ function App() {
   const numMonth = now.getMonth() + 1
   const trueMonthArr = [...monthArr.slice(-(12 - numMonth)), ...monthArr.slice(0, numMonth)]
 
-  function qwe() {
-    let newarr = monthArr.slice(-4)
-    let qwearr = monthArr.slice(0, 8)
-    let newnewarr = [...newarr, ...qwearr]
-    console.log(newnewarr)
-  }
-
   for (let i = 0; i < numColumns; i++) {
     matrix[i] = [];
 
@@ -36,7 +29,6 @@ function App() {
 
   function createObjectTime() {
     const now = new Date()
-
     const daysAYear = 365
     const objectTime = {}
 
@@ -77,29 +69,36 @@ function App() {
 
   return (
     <div className="App">
-      <div className='App__months'>
-        {
-          trueMonthArr.map((i) => (
-            <div className='App__month' key={i}>{i}</div>
-          ))
-        }
+      <div className='App__container_day_of_the_week'>
+        <div className='App__day_of_the_week App__day_of_the_week-first'>Пн</div>
+        <div className='App__day_of_the_week'>Ср</div>
+        <div className='App__day_of_the_week'>Пт</div>
       </div>
-      {matrix.map((row, rowIndex) => (
-        <div
-          className='App__row' key={rowIndex}>
-          {row.map((cell, columnIndex) => (
-            <Cell
-              key={columnIndex}
-              cellIndex={cell}
-              columnIndex={columnIndex}
-              date={dateArr[cell]}
-              colorCell={colorArr[cell]}
-              dateOfTheWeek={dateOfTheWeek}
-            />
-          ))}
+      <div>
+
+        <div className='App__months'>
+          {
+            trueMonthArr.map((i) => (
+              <div className='App__month' key={i}>{i}</div>
+            ))
+          }
         </div>
-      ))}
-      <button onClick={buttonClick}>Click</button>
+        {matrix.map((row, rowIndex) => (
+          <div
+            className='App__row' key={rowIndex}>
+            {row.map((cell, columnIndex) => (
+              <Cell
+                key={columnIndex}
+                cellIndex={cell}
+                columnIndex={columnIndex}
+                date={dateArr[cell]}
+                colorCell={colorArr[cell]}
+                dateOfTheWeek={dateOfTheWeek}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

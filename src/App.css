@@ -3,14 +3,15 @@ html {
 }
 
 .App {
-
+    display: flex;
+    justify-content: center;
     margin-top: 115px;
 }
 
 .App__months {
     display: flex;
     /* justify-content: space-around; */
-    margin-left: 241px;
+    margin-left: 16px;
     /* width: auto; */
 }
 
@@ -27,8 +28,30 @@ html {
 .App__row {
     display: Flex;
     justify-content: left;
-    margin-left: 225px;
     margin-right: 15px;
+
+}
+
+.App__container_day_of_the_week {
+    display: flex;
+    flex-direction: column;
+}
+
+.App__day_of_the_week {
+    display: flex;
+    font-family: Inter;
+    margin-top: 15.54px;
+    margin-right: 4.67px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #959494;
+}
+
+.App__day_of_the_week-first {
+    margin-top: 19px;
 
 }
 
