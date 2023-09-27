@@ -5,8 +5,8 @@ const Cell = (props) => {
     
     const { cellIndex, columnIndex, date, colorCell } = props
     const [showTooltip, setShowToolpit] = useState(false)
-let teg = 'App__cell'
-
+    let teg = 'App__cell'
+    
     if(colorCell > 0) {
         teg = 'App__cell-3'   
     }

@@ -24,6 +24,8 @@ function App() {
   const [dateOfTheWeek , setDateOfTheWeek] = useState(now.getDay())
 
   
+  console.log(dateOfTheWeek === 3 ? 'Ср' : '')
+
   for (let i = 0; i < numColumns; i++) {
     matrix[i] = [];
 
