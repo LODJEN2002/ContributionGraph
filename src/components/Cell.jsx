@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import corner from '../corner.svg'
 
+
 const Cell = (props) => {
     
     const { cellIndex, columnIndex, date, colorCell } = props
