@@ -4,18 +4,11 @@ import './App.css';
 import Cell from './components/Cell';
 import { scryRenderedDOMComponentsWithClass } from 'react-dom/test-utils';
 
-
-// У нас есть все числа(i), поэтому если вторник то минус 5,
-//  в нутри функциональный комп.
-// проверяешь если его i, то тогда баним его через  тернальные
-//  операторы ? true : false 
-
-
-
 function App() {
   const matrix = [];
   const numRows = 51;
   const numColumns = 7;
+  let monthArr = ['Янв.', 'Февр.', 'Март.', 'Апр.', 'Май', 'Июнь', 'Июль', 'Авг.', 'Сент.', 'Окт.', 'Нояб.', 'Дек.']
   const [timeObj, setTimeObj] = useState({})
   const [allObj, setAllObj] = useState({})
   const [colorArr, setColorArr] = useState([])
@@ -23,10 +16,15 @@ function App() {
   const now = new Date()
   const [dateOfTheWeek, setDateOfTheWeek] = useState(now.getDay()) //now.getDay()
   const [hiddenDays, setHiddenDays] = useState(357 - dateOfTheWeek)
+  const numMonth = now.getMonth() + 1
+  const trueMonthArr = [...monthArr.slice(-(12 - numMonth)), ...monthArr.slice(0, numMonth)]
 
-  console.log(hiddenDays)
-
-  console.log(dateOfTheWeek === 3 ? 'Ср' : '')
+  function qwe() {
+    let newarr = monthArr.slice(-4)
+    let qwearr = monthArr.slice(0, 8)
+    let newnewarr = [...newarr, ...qwearr]
+    console.log(newnewarr)
+  }
 
   for (let i = 0; i < numColumns; i++) {
     matrix[i] = [];
@@ -35,18 +33,6 @@ function App() {
       matrix[i][j] = j * numColumns + i + 1;
     }
   }
-  // console.log(now.getDay())
-  // setDateOfTheWeek()
-
-  //   function func(num) {
-  //     let matrix = []
-  //     for(let i = 0; i < num; i++){
-  //       matrix[num][num] = num*num  // ctr + backspace = delite word
-  //     }
-
-  //     return matrix
-  //   }
-  // console.log(func(7))
 
   function createObjectTime() {
     const now = new Date()
@@ -66,7 +52,6 @@ function App() {
     return objectTime
   }
 
-  // console.log(objectTime) // 2022-08-15 first date
 
   useEffect(() => {
     const objectTime = createObjectTime()
@@ -82,35 +67,23 @@ function App() {
         setAllObj(updateAllObj)
         setDateArr(Object.keys(updateAllObj).slice(0, hiddenDays).reverse())
         setColorArr(Object.values(updateAllObj).slice(0, hiddenDays).reverse())
-        // setDateArr(Object.keys(updateAllObj).reverse())
-        // console.log(updateAllObj)
       })
       .catch(err => console.log(err))
   }, [])
 
-  // function qwe() {
-  //   // const sum = Object.keys(allObj).length - dateArr.length
-  //   const qwe = Object.entries(allObj)
-  //   const asd = Object.fromEntries(qwe.slice(0, -44))
-  //   // return Object.keys(allObj).length
-  //   return asd
-  // }
-
-  // const qweasd = Object.entries(allObj)
-  //   const asd = Object.fromEntries(qweasd.slice(0, -44))
-
-  //   console.log(asd)
-  // // console.log(qwe())
-  // console.log(Object.entries(allObj).slice(0, -2))
-
   function buttonClick() {
     console.log(allObj)
-    // console.log(dateArr)
-    // console.log(dateArr.reverse().slice(0, 350))
   }
 
   return (
     <div className="App">
+      <div className='App__months'>
+        {
+          trueMonthArr.map((i) => (
+            <div className='App__month' key={i}>{i}</div>
+          ))
+        }
+      </div>
       {matrix.map((row, rowIndex) => (
         <div
           className='App__row' key={rowIndex}>
