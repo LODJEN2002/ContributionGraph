@@ -21,9 +21,11 @@ function App() {
   const [colorArr, setColorArr] = useState([])
   const [dateArr, setDateArr] = useState([])
   const now = new Date()
-  const [dateOfTheWeek , setDateOfTheWeek] = useState(now.getDay())
+  const [dateOfTheWeek, setDateOfTheWeek] = useState(now.getDay()) //now.getDay()
+  const [hiddenDays, setHiddenDays] = useState(357 - dateOfTheWeek)
 
-  
+  console.log(hiddenDays)
+
   console.log(dateOfTheWeek === 3 ? 'Ср' : '')
 
   for (let i = 0; i < numColumns; i++) {
@@ -36,15 +38,15 @@ function App() {
   // console.log(now.getDay())
   // setDateOfTheWeek()
 
-//   function func(num) {
-//     let matrix = []
-//     for(let i = 0; i < num; i++){
-//       matrix[num][num] = num*num  // ctr + backspace = delite word
-//     }
+  //   function func(num) {
+  //     let matrix = []
+  //     for(let i = 0; i < num; i++){
+  //       matrix[num][num] = num*num  // ctr + backspace = delite word
+  //     }
 
-//     return matrix
-//   }
-// console.log(func(7))
+  //     return matrix
+  //   }
+  // console.log(func(7))
 
   function createObjectTime() {
     const now = new Date()
@@ -78,8 +80,8 @@ function App() {
         setTimeObj(res)
         const updateAllObj = { ...objectTime, ...res }
         setAllObj(updateAllObj)
-        setDateArr(Object.keys(updateAllObj).slice(0, 358).reverse())
-        setColorArr(Object.values(updateAllObj).slice(0,358).reverse())
+        setDateArr(Object.keys(updateAllObj).slice(0, hiddenDays).reverse())
+        setColorArr(Object.values(updateAllObj).slice(0, hiddenDays).reverse())
         // setDateArr(Object.keys(updateAllObj).reverse())
         // console.log(updateAllObj)
       })

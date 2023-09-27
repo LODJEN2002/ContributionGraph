@@ -3,12 +3,14 @@ html{
 }
 
 .App {
+    
     margin-top: 115px;
 }
 
 .App__row {
     display: Flex;
-    justify-content: center;
+    justify-content: left;
+    margin-left: 225px;
     margin-right: 15px;
 
 }
