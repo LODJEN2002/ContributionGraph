@@ -93,7 +93,7 @@ html {
 .App__cell_visible {
     display: block;
     position: absolute;
-    transform: translate(-65px, -72px);
+    transform: translate(-65px, -67px);
     /* transform: translateX(10px); */
     width: 145px;
     height: 42px;
@@ -110,5 +110,5 @@ html {
 }
 
 .qwe {
-    transform: translate(-23px, 20px);
+    transform: translate(-0px, 8px);
 }
