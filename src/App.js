@@ -5,19 +5,20 @@ import Cell from './components/Cell';
 import { scryRenderedDOMComponentsWithClass } from 'react-dom/test-utils';
 
 function App() {
+  const now = new Date()
   const matrix = [];
   const numRows = 51;
   const numColumns = 7;
   let monthArr = ['Янв.', 'Февр.', 'Март.', 'Апр.', 'Май', 'Июнь', 'Июль', 'Авг.', 'Сент.', 'Окт.', 'Нояб.', 'Дек.']
   const [timeObj, setTimeObj] = useState({})
   const [allObj, setAllObj] = useState({})
-  const [colorArr, setColorArr] = useState([])
   const [dateArr, setDateArr] = useState([])
-  const now = new Date()
   const [dateOfTheWeek, setDateOfTheWeek] = useState(now.getDay()) //now.getDay()
-  const [hiddenDays, setHiddenDays] = useState(357 - dateOfTheWeek)
+  const [hiddenDays, setHiddenDays] = useState(350 + dateOfTheWeek)
+  //Работа с месяцами
   const numMonth = now.getMonth() + 1
   const trueMonthArr = [...monthArr.slice(-(12 - numMonth)), ...monthArr.slice(0, numMonth)]
+  const [colorArr, setColorArr] = useState([])
 
   for (let i = 0; i < numColumns; i++) {
     matrix[i] = [];
@@ -43,6 +44,8 @@ function App() {
 
     return objectTime
   }
+
+  console.log(hiddenDays)
 
 
   useEffect(() => {
