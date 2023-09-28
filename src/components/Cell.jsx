@@ -5,30 +5,54 @@ import corner from '../corner.svg'
 const Cell = (props) => {
     const { cellIndex, columnIndex, date, colorCell, dateOfTheWeek } = props
     const [showTooltip, setShowToolpit] = useState(false)
-    let teg = 'App__cell'
+    let className = 'App__cell'
+    let day = ''
 
     if (colorCell > 0) {
-        teg = 'App__cell-3'
+        className = 'App__cell-3'
     }
     if (colorCell > 10) {
-        teg = 'App__cell-6'
+        className = 'App__cell-6'
     }
     if (colorCell > 19) {
-        teg = 'App__cell-9'
+        className = 'App__cell-9'
     }
     if (colorCell > 29) {
-        teg = 'App__cell-12'
+        className = 'App__cell-12'
     }
 
+    if (cellIndex % 7 === 1) {
+        day = 'Пн'
+    }
+    if (cellIndex % 7 === 2) {
+        day = 'Вт'
+    }
+    if (cellIndex % 7 === 3) {
+        day = 'Ср'
+    }
+    if (cellIndex % 7 === 4) {
+        day = 'Четверг'
+    }
+    if (cellIndex % 7 === 5) {
+        day = 'Пятница'
+    }
+    if (cellIndex % 7 === 6) {
+        day = 'Суббота'
+    }
+    if (cellIndex % 7 === 0) {
+        day = 'Вс'
+    }
+    
     function clickCell() {
         console.log(columnIndex + ' columnIndex')
         console.log(cellIndex + ' cellIndex')
+        console.log(cellIndex % 7 === 1 ? 'pn' : 'no')
     }
 
     if (cellIndex <= 350 + dateOfTheWeek) {
         return (
             <span
-                className={teg}
+                className={className}
                 onMouseEnter={() => setShowToolpit(true)}
                 onMouseLeave={() => setShowToolpit(false)}
                 onClick={() => clickCell()}
@@ -37,8 +61,13 @@ const Cell = (props) => {
                     className='App__cell'
                 ></span>
                 {showTooltip ?
-                    <span className='App__cell_visible'>
-                        {colorCell} contributions <br /> {date}
+                    <span className='App__cell_visible'
+                        onMouseEnter={() => setShowToolpit(false)}
+                    >
+                        {colorCell} contributions <br />
+                        <div className='App__cell_visible_date'>
+                            {day + date}
+                        </div>
                         <div className='App__cell_br'>{ }
                             <img className='qwe' src={corner} alt="corner" />
                         </div>
@@ -47,6 +76,7 @@ const Cell = (props) => {
                     ''
                 }
             </span>
+
         );
     }
 };

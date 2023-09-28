@@ -93,15 +93,21 @@ html {
 .App__cell_visible {
     display: block;
     position: absolute;
-    transform: translate(-65px, -67px);
-    /* transform: translateX(10px); */
+    transform: translate(-65px, -70px);
     width: 145px;
-    height: 42px;
+    height: 37px;
     background-color: black;
     color: white;
     text-align: center;
     font-size: 12px;
     border-radius: 3px;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: center;
+    padding-top: 5px;
 }
 
 .App__cell_br {
@@ -110,5 +116,16 @@ html {
 }
 
 .qwe {
-    transform: translate(-0px, 8px);
+    transform: translate(-0px, 5px);
+}
+
+.App__cell_visible_date {
+    color: #7C7C7C;
+    font-family: Inter;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
+    letter-spacing: 0em;
+    text-align: center;
+
 }

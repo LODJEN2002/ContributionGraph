@@ -9,13 +9,14 @@ function App() {
   const matrix = [];
   const numRows = 51;
   const numColumns = 7;
-  let monthArr = ['Янв.', 'Февр.', 'Март.', 'Апр.', 'Май', 'Июнь', 'Июль', 'Авг.', 'Сент.', 'Окт.', 'Нояб.', 'Дек.']
   const [timeObj, setTimeObj] = useState({})
   const [allObj, setAllObj] = useState({})
   const [dateArr, setDateArr] = useState([])
-  const [dateOfTheWeek, setDateOfTheWeek] = useState(now.getDay()) //now.getDay()
-  const [hiddenDays, setHiddenDays] = useState(350 + dateOfTheWeek)
-  //Работа с месяцами
+  // Работа с данными месяцов
+  const dateOfTheWeek = now.getDay() //now.getDay()
+  const hiddenDays = 350 + dateOfTheWeek
+  //Работа с месяцами (верх. планка)
+  let monthArr = ['Янв.', 'Февр.', 'Март.', 'Апр.', 'Май', 'Июнь', 'Июль', 'Авг.', 'Сент.', 'Окт.', 'Нояб.', 'Дек.']
   const numMonth = now.getMonth() + 1
   const trueMonthArr = [...monthArr.slice(-(12 - numMonth)), ...monthArr.slice(0, numMonth)]
   const [colorArr, setColorArr] = useState([])
@@ -45,9 +46,6 @@ function App() {
     return objectTime
   }
 
-  console.log(hiddenDays)
-
-
   useEffect(() => {
     const objectTime = createObjectTime()
 
@@ -60,15 +58,11 @@ function App() {
         setTimeObj(res)
         const updateAllObj = { ...objectTime, ...res }
         setAllObj(updateAllObj)
-        setDateArr(Object.keys(updateAllObj).slice(0, hiddenDays).reverse())
-        setColorArr(Object.values(updateAllObj).slice(0, hiddenDays).reverse())
+        setDateArr(Object.keys(updateAllObj).slice(0, hiddenDays +1).reverse())
+        setColorArr(Object.values(updateAllObj).slice(0, hiddenDays +1).reverse())
       })
       .catch(err => console.log(err))
   }, [])
-
-  function buttonClick() {
-    console.log(allObj)
-  }
 
   return (
     <div className="App">
