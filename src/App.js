@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import nowDate from './components/Date';
 import './App.css';
 import Cell from './components/Cell';
-import { scryRenderedDOMComponentsWithClass } from 'react-dom/test-utils';
 
 function App() {
   const now = new Date()
@@ -18,8 +17,10 @@ function App() {
   //Работа с месяцами (верх. планка)
   let monthArr = ['Янв.', 'Февр.', 'Март.', 'Апр.', 'Май', 'Июнь', 'Июль', 'Авг.', 'Сент.', 'Окт.', 'Нояб.', 'Дек.']
   const numMonth = now.getMonth() + 1
-  const trueMonthArr = [...monthArr.slice(-(12 - numMonth)), ...monthArr.slice(0, numMonth)]
+  const trueMonthArr = [...monthArr.slice(-(12 - numMonth))]
   const [colorArr, setColorArr] = useState([])
+
+  console.log(trueMonthArr)
 
   for (let i = 0; i < numColumns; i++) {
     matrix[i] = [];
@@ -58,11 +59,12 @@ function App() {
         setTimeObj(res)
         const updateAllObj = { ...objectTime, ...res }
         setAllObj(updateAllObj)
-        setDateArr(Object.keys(updateAllObj).slice(0, hiddenDays +1).reverse())
-        setColorArr(Object.values(updateAllObj).slice(0, hiddenDays +1).reverse())
+        setDateArr(Object.keys(updateAllObj).slice(0, hiddenDays + 1).reverse())
+        setColorArr(Object.values(updateAllObj).slice(0, hiddenDays + 1).reverse())
       })
       .catch(err => console.log(err))
   }, [])
+
 
   return (
     <div className="App">
@@ -72,7 +74,6 @@ function App() {
         <div className='App__day_of_the_week'>Пт</div>
       </div>
       <div>
-
         <div className='App__months'>
           {
             trueMonthArr.map((i) => (

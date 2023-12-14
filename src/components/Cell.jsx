@@ -8,6 +8,21 @@ const Cell = (props) => {
     let className = 'App__cell'
     let day = ''
 
+    // Создаем объект, в котором ключи - это пороговые значения colorCell, а значения - соответствующие классы
+    let thresholds = {
+        0: 'App__cell-3',
+        10: 'App__cell-6',
+        19: 'App__cell-9',
+        29: 'App__cell-12'
+    };
+
+    let highestThreshold = 0
+    for (let threshold in thresholds) {
+        if (colorCell > threshold) {
+            highestThreshold = threshold
+        }
+    }
+
     if (colorCell > 0) {
         className = 'App__cell-3'
     }
@@ -20,6 +35,7 @@ const Cell = (props) => {
     if (colorCell > 29) {
         className = 'App__cell-12'
     }
+
 
     if (cellIndex % 7 === 1) {
         day = 'Понедельник'
@@ -44,51 +60,44 @@ const Cell = (props) => {
     }
 
     function qwe(date) {
-        let month = date.slice(5,7)
-        if(month === '01'){
+        let month = date.slice(5, 7)
+        if (month === '01') {
             month = 'Январь'
         }
-        if(month === '02'){
+        if (month === '02') {
             month = 'Февраль'
         }
-        if(month === '03'){
+        if (month === '03') {
             month = 'Март'
         }
-        if(month === '04'){
+        if (month === '04') {
             month = 'Апрель'
         }
-        if(month === '05'){
+        if (month === '05') {
             month = 'Май'
         }
-        if(month === '06'){
+        if (month === '06') {
             month = 'Июнь'
         }
-        if(month === '07'){
+        if (month === '07') {
             month = 'Июль'
         }
-        if(month === '08'){
+        if (month === '08') {
             month = 'Август'
         }
-        if(month === '09'){
+        if (month === '09') {
             month = 'Сентябрь'
         }
-        if(month === '10'){
+        if (month === '10') {
             month = 'Октябрь'
         }
-        if(month === '11'){
+        if (month === '11') {
             month = 'Ноябрь'
         }
-        if(month === '12'){
+        if (month === '12') {
             month = 'Декабрь'
         }
         return month
-    }
-
-
-    function clickCell() {
-        console.log(columnIndex + ' columnIndex')
-        console.log(cellIndex + ' cellIndex')
-        console.log(cellIndex % 7 === 1 ? 'pn' : 'no')
     }
 
     if (cellIndex <= 350 + dateOfTheWeek) {
@@ -97,7 +106,6 @@ const Cell = (props) => {
                 className={className}
                 onMouseEnter={() => setShowToolpit(true)}
                 onMouseLeave={() => setShowToolpit(false)}
-                onClick={() => clickCell()}
             >
                 <span
                     className='App__cell'
